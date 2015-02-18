@@ -1,6 +1,6 @@
 #revigoR
 
-Scripts for accessing Revigo Treemaps from R
+Scripts for accessing Revigo Biological Process Treemaps from R
 
 Inspired by discussion here: https://www.biostars.org/p/70064/
 
