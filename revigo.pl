@@ -8,8 +8,10 @@ use Getopt::Long;
 #import data from R
 my $goterms;
 my $gopvals;
+my $size;
 GetOptions ("goterms=s" => \$goterms,
-            "gopvals=s" => \$gopvals);
+            "gopvals=s" => \$gopvals, 
+            "size=s"    => \$size);
  
 # prep go terms and pvals to be put into hash and joined
 ## parse options strings into arrays
@@ -32,7 +34,7 @@ $agent->env_proxy();
 $agent->get('http://revigo.irb.hr/');
 $agent->form_number(1) if $agent->forms and scalar @{$agent->forms};
 $formfiller->add_filler( 'goList' => Fixed => $go_str);
-$formfiller->add_filler( 'cutoff' => Fixed => '0.4' );
+$formfiller->add_filler( 'cutoff' => Fixed => $size );
 $formfiller->add_filler( 'isPValue' => Fixed => 'yes' );
 $formfiller->add_filler( 'whatIsBetter' => Fixed => 'higher' );
 $formfiller->add_filler( 'goSizes' => Fixed => '0' );
