@@ -8,11 +8,20 @@ use Getopt::Long;
 #import data from R
 my $goterms;
 my $gopvals;
-my $size;
+my $cutoff;
+my $organism;
+my $ispvalue;
+my $whatisbetter;
+my $measure;
+
 GetOptions ("goterms=s" => \$goterms,
             "gopvals=s" => \$gopvals, 
-            "size=s"    => \$size);
- 
+            "size=s"    => \$cutoff);
+			"organism=s" => \$organism,
+			"ispvalue=s" => \$ispvalue,
+			"whatisbetter=s" => \$whatisbetter,
+			"measure=s" => \$measure);
+			 
 # prep go terms and pvals to be put into hash and joined
 ## parse options strings into arrays
 my @go_terms=split(/,/, $goterms);
@@ -34,11 +43,11 @@ $agent->env_proxy();
 $agent->get('http://revigo.irb.hr/');
 $agent->form_number(1) if $agent->forms and scalar @{$agent->forms};
 $formfiller->add_filler( 'goList' => Fixed => $go_str);
-$formfiller->add_filler( 'cutoff' => Fixed => $size );
-$formfiller->add_filler( 'isPValue' => Fixed => 'yes' );
-$formfiller->add_filler( 'whatIsBetter' => Fixed => 'higher' );
-$formfiller->add_filler( 'goSizes' => Fixed => '0' );
-$formfiller->add_filler( 'measure' => Fixed => 'SIMREL' );
+$formfiller->add_filler( 'cutoff' => Fixed => $cutoff );
+$formfiller->add_filler( 'isPValue' => Fixed => $ispvalue );
+$formfiller->add_filler( 'whatIsBetter' => Fixed => $whatisbetter );
+$formfiller->add_filler( 'goSizes' => Fixed => $organism );
+$formfiller->add_filler( 'measure' => Fixed => $measure );
 $formfiller->fill_form($agent->current_form);
 
 # run analysis
