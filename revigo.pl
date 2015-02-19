@@ -16,7 +16,7 @@ my $measure;
 
 GetOptions ("goterms=s" => \$goterms,
             "gopvals=s" => \$gopvals, 
-            "size=s"    => \$cutoff);
+            "cutoff=s"    => \$cutoff,
 			"organism=s" => \$organism,
 			"ispvalue=s" => \$ispvalue,
 			"whatisbetter=s" => \$whatisbetter,
