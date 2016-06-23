@@ -66,10 +66,10 @@ my $results=$agent->content;
 
 $results =~ s/tmPlot/treemap/g;
 $results =~ s/;//g;
-$results =~ s/CCCCCC00/CCCCCCAA/;
+$results =~ s/CCCCCCAA/CCCCCC00/;
 $results =~ s/position.legend = "none"/position.legend = "none",/;
 
-my $addstring = "border.col=c(\"black\",\"gray35\"),\npalette.HCL.options=list(hue_start=80,hue_perm=TRUE),\nborder.lwds=c(5,2),\nfontsize.labels=c(36,12),\nfontcolor.labels=c(\"black\",\"gray34\"),\nfontsize.title=14";
+my $addstring = "border.col=c(\"black\",\"gray35\"),\npalette.HCL.options=list(hue_start=80,hue_perm=TRUE),\nborder.lwds=c(5,2),\nfontsize.labels=c(36,18),\nfontcolor.labels=c(\"black\",\"gray34\"),\nfontsize.title=16";
 my @add = split(/\n/ ,$addstring);
 
 
