@@ -13,6 +13,7 @@ my $organism;
 my $ispvalue;
 my $whatisbetter;
 my $measure;
+my $domain;
 
 GetOptions ("goterms=s" => \$goterms,
             "gopvals=s" => \$gopvals, 
@@ -20,7 +21,8 @@ GetOptions ("goterms=s" => \$goterms,
 			"organism=s" => \$organism,
 			"ispvalue=s" => \$ispvalue,
 			"whatisbetter=s" => \$whatisbetter,
-			"measure=s" => \$measure);
+			"measure=s" => \$measure,
+         "domain=s"=> \$domain);
 			 
 # prep go terms and pvals to be put into hash and joined
 ## parse options strings into arrays
@@ -52,11 +54,15 @@ $formfiller->fill_form($agent->current_form);
 
 # run analysis
 $agent->click("startRevigo");
-# follow links to R script
-$agent->follow_link( text => "TreeMap");
 
-#my $results = $agent->find_all_links;
-$agent->follow_link( text => "Make R script for plotting treemaps" );
+if($domain eq "MF"){
+ $agent->follow_link( url => "toR_treemap.jsp?table=3");
+} elsif($domain eq "CC"){
+    $agent->follow_link( url => "toR_treemap.jsp?table=2");
+    } elsif($domain eq "BP"){
+          $agent->follow_link( url => "toR_treemap.jsp?table=1");
+    }
+
 
 # remove header from results
 $agent->delete_header;
