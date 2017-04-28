@@ -8,6 +8,7 @@ organism <- "whole UniProt" #Allowed values: See organism.list below
 isPValue <- "yes" #Allowed values: "yes"  "no"
 whatIsBetter <- "higher" #Allowed values: "higher" "lower" "absolute" "abs_log"
 measure <- "SIMREL" #Allowed values: "RESNIK" "LIN" "SIMREL" "JIANG"
+domain <- "BP" #Allowed values: "BP" "CC" "MF"
 
 #Do not change below
 organism.list <- list(
